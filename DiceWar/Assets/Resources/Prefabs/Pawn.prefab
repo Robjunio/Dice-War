@@ -85,6 +85,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a80474a997b800446b727c1497313749,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a80474a997b800446b727c1497313749,
+        type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -123,6 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9023baa09f0bd8243ba254e06f2e6d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  attack: 0
   _pawnMovement: {fileID: 7877055769543487617}
 --- !u!114 &7877055769543487617
 MonoBehaviour:
@@ -138,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layersToHit:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   player:
     serializedVersion: 2
     m_Bits: 0

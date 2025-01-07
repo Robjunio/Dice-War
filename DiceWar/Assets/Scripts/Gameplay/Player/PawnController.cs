@@ -1,11 +1,19 @@
 using DG.Tweening;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class PawnController : MonoBehaviour
 {
+    [SerializeField] private int health;
+    [SerializeField] private int attack;
+
+    private int _attackBonus = 0;
+
     private int _moves = 3;
     private int _currentMovementsCounter = 0;
+
+    private int _dices = 3;
+    private int _extraDices = 0;
+
     private bool _myTurn = false;
     private bool _isPlayer1 = false;
 
@@ -36,6 +44,10 @@ public class PawnController : MonoBehaviour
             {
                 EndTurn();
             }
+            else
+            {
+                _pawnMovement.InitializeMovement();
+            }
         }
     }
     private void EndTurn()
@@ -62,6 +74,16 @@ public class PawnController : MonoBehaviour
         _myTurn = true;
         _currentMovementsCounter = _moves;
         _pawnMovement.InitializeMovement();
+    }
+
+    public void AddMovement(int value)
+    {
+        _currentMovementsCounter += value;
+    }
+
+    public void AddAttack(int value)
+    {
+        _attackBonus = value;
     }
 
     private void OnEnable()

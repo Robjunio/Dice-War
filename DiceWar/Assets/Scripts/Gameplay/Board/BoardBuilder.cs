@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardBuilder : MonoBehaviour
@@ -40,13 +39,13 @@ public class BoardBuilder : MonoBehaviour
             if(i == player1pos)
             {
                 _positionPlayer1Spawner = _boardMatrix.GetSpawnPointPosition(i);
-                newTile.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Materials/BoardTile_Spawn");
+                newTile.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Materials/Board_Elements/BoardTile_Spawn");
             }
 
             if(i == player2pos)
             {
                 _positionPlayer2Spawner = _boardMatrix.GetSpawnPointPosition(i);
-                newTile.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Materials/BoardTile_Spawn");
+                newTile.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Materials/Board_Elements/BoardTile_Spawn");
             }
         }
 
