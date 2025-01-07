@@ -11,7 +11,7 @@ public class PreGameSettingsManager : MonoBehaviour
     {
         if (ValideInput())
         {
-            BoardSettings boardSettings = Resources.Load<BoardSettings>("ScriptableObjects/BoardSettings");
+            MatchSettings boardSettings = Resources.Load<MatchSettings>("ScriptableObjects/BoardSettings");
             boardSettings.cols = int.Parse(_colsInput.text);
             boardSettings.rows = int.Parse(_rowsInput.text);
         }
