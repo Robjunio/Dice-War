@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 1519504617}
   - component: {fileID: 1519504616}
   - component: {fileID: 1519504618}
+  - component: {fileID: 1519504619}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -360,6 +361,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3132fc639847a1419ef4696809b5901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1519504619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519504615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d149f1ad25262964cb9b53cc6c975997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpsPrefabs:
+  - {fileID: 6680279474055615860, guid: e76103a290252b046993332e8377777f, type: 3}
+  - {fileID: 6680279474055615860, guid: d0fccab17b391484fb9bb2e0a47baf73, type: 3}
+  - {fileID: 6680279474055615860, guid: 6415137361b04c8479d6199d1d4e70f8, type: 3}
+  - {fileID: 6680279474055615860, guid: 2f5cae442d627d94d8be432d10c5c808, type: 3}
 --- !u!1 &1696395800
 GameObject:
   m_ObjectHideFlags: 0
