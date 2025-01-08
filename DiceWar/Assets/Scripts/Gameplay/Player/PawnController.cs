@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class PawnController : MonoBehaviour
 {
-    [SerializeField] private int health;
+    [SerializeField] private int health = 10;
     private int _currentHealth;
 
-    [SerializeField] private int attack;
+    [SerializeField] private int attack = 1;
 
     private int _attackBonus = 0;
 
@@ -20,10 +20,13 @@ public class PawnController : MonoBehaviour
     private bool _isPlayer1 = false;
 
     [SerializeField] private PawnMovement _pawnMovement;
+    [SerializeField] private PawnAttackSystem _pawnAttack;
+
+    private GameObject _dice;
 
     private void Awake()
     {
-        health = _currentHealth;
+        _currentHealth = health;
         var objects = FindObjectsOfType<PawnController>();
         if(objects.Length > 1)
         {
@@ -38,12 +41,24 @@ public class PawnController : MonoBehaviour
         }
     }
 
-    private void CheckTurn()
+    private void Start()
+    {
+        if(_isPlayer1)
+        {
+            GameManager.Instance.SetPlayer1(this);
+            _dice = Resources.Load<GameObject>("Prefabs/Dice_Purple");
+        }
+        else
+        {
+            GameManager.Instance.SetPlayer2(this);
+            _dice = Resources.Load<GameObject>("Prefabs/Dice_Orange");
+        }
+    }
+    public void CheckTurnAfterBattle()
     {
         if (_myTurn)
         {
-            _currentMovementsCounter--;
-            if(_currentMovementsCounter == 0)
+            if (_currentMovementsCounter == 0)
             {
                 EndTurn();
             }
@@ -53,10 +68,32 @@ public class PawnController : MonoBehaviour
             }
         }
     }
+    private void CheckTurn()
+    {
+        if (_myTurn)
+        {
+            _currentMovementsCounter--;
+            if (_currentMovementsCounter == 0)
+            {
+                if (!_pawnAttack.CheckAttackArea())
+                {
+                    EndTurn();
+                }
+            }
+            else
+            {
+                _pawnAttack.CheckAttackArea();
+                _pawnMovement.InitializeMovement();
+            }
+        }
+    }
     private void EndTurn()
     {
         _pawnMovement.StopMove();
         _myTurn = false;
+
+        _extraDices = 0;
+        _attackBonus = 0;
 
         // Delay for change turns
         transform.DOScale(transform.localScale, 0.2f).OnComplete(() =>
@@ -75,8 +112,13 @@ public class PawnController : MonoBehaviour
     private void StartTurn()
     {
         _myTurn = true;
+    
         _currentMovementsCounter = _moves;
-        _pawnMovement.InitializeMovement();
+
+        if (!_pawnAttack.CheckAttackArea()) {
+
+            _pawnMovement.InitializeMovement();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -105,6 +147,43 @@ public class PawnController : MonoBehaviour
     public void Heal(int value)
     {
         _currentHealth = Mathf.Clamp(_currentHealth + value, 0, health);
+    }
+
+    public bool IsMyTurn()
+    {
+        return _myTurn;
+    }
+
+    public int GetDiceQuantity()
+    {
+        return _dices + _extraDices;
+    }
+
+    public int GetAttackPower()
+    {
+        return attack + _attackBonus;
+    }
+
+    public GameObject GetDice()
+    {
+        return _dice;
+    }
+
+    public void GetHit(int value)
+    {
+        _currentHealth -= value;
+        if( _currentHealth <= 0 )
+        {
+            if (_isPlayer1)
+            {
+                EventsManager.Instance.OnPlayerWin("Player 2");
+            }
+            else
+            {
+                EventsManager.Instance.OnPlayerWin("Player 1");
+            }
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnEnable()

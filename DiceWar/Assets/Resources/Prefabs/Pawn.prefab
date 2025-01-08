@@ -108,6 +108,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a80474a997b800446b727c1497313749,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4624230579332432312}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a80474a997b800446b727c1497313749,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: -7667725499885872525}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a80474a997b800446b727c1497313749,
         type: 3}
@@ -132,9 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9023baa09f0bd8243ba254e06f2e6d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  attack: 0
+  health: 1
+  attack: 1
   _pawnMovement: {fileID: 7877055769543487617}
+  _pawnAttack: {fileID: 4624230579332432312}
 --- !u!114 &7877055769543487617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +158,21 @@ MonoBehaviour:
   player:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &4624230579332432312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724835187031584213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddfcdd7e528d7384ab67603d6ac83c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerToHit:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!64 &-7667725499885872525
 MeshCollider:
   m_ObjectHideFlags: 0
