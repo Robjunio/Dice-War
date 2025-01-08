@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
     AudioClip UIButton;
     private void Start()
     {
-        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/UI-Click");
+        UIButton = Resources.Load<AudioClip>("Sounds/UI-Click");
     }
     public void RestartScene()
     {
