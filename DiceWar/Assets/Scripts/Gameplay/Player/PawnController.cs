@@ -202,6 +202,12 @@ public class PawnController : MonoBehaviour
             }
             gameObject.SetActive(false);
         }
+        else
+        {
+            // Hit animation
+            transform.DOPunchScale(Vector3.one * 1.4f, 0.6f);
+            transform.DOShakePosition(0.3f, 0.7f);
+        }
     }
 
     private void OnEnable()
