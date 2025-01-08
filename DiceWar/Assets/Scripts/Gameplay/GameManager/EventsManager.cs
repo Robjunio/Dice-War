@@ -4,6 +4,7 @@ public class EventsManager : MonoBehaviour
 {
     public delegate void PrepareTable(Vector3 player1Spawn, Vector3 player2Spawn, MatchSettings matchSettings, BoardMatrix boardMatrix);
     public delegate void StartBattle();
+    public delegate void Winner(string player);
     public static event PrepareTable BoardPrepared;
     public static event PrepareTable PlayersInPosition;
     public static event PrepareTable PowerUpsInPosition;
@@ -11,6 +12,8 @@ public class EventsManager : MonoBehaviour
     public static event StartBattle Player2Turn;
     public static event StartBattle PlayerMove;
     public static event StartBattle PlayerCollectAPowerUp;
+    public static event StartBattle PlayerStartABattle;
+    public static event Winner PlayerWin;
 
     public static EventsManager Instance;
 
@@ -35,6 +38,11 @@ public class EventsManager : MonoBehaviour
         OnPlayer1Turn();
     }
 
+    public void OnPlayerWin(string playerName)
+    {
+        PlayerWin?.Invoke(playerName);
+    }
+
     public void OnPlayer1Turn()
     {
         Player1Turn?.Invoke();
@@ -53,5 +61,10 @@ public class EventsManager : MonoBehaviour
     public void OnPlayerCollectedAPowerUp()
     {
         PlayerCollectAPowerUp?.Invoke();
+    }
+
+    public void OnPlayerStartABattle()
+    {
+        PlayerStartABattle?.Invoke();
     }
 }

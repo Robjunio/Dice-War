@@ -29,7 +29,7 @@ public class PowerUpManager : MonoBehaviour
 
     private Vector3 UpdatePositionForPowerUp(Vector3 pos)
     {
-        return new Vector3(pos.x, pos.y + 0.2f, pos.z);
+        return new Vector3(pos.x, pos.y + 0.05f, pos.z);
     }
 
     private GameObject GetRandomPowerUp(Vector3 position)
@@ -50,6 +50,7 @@ public class PowerUpManager : MonoBehaviour
 
     private void ResetPowerUps()
     {
+        _powerUpCounter = _powerUpTotal;
         foreach (var powerUp in powerUps)
         {
             powerUp.SetActive(true);
