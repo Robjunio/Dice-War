@@ -79,11 +79,21 @@ public class PawnController : MonoBehaviour
                 {
                     EndTurn();
                 }
+                else
+                {
+                    _pawnMovement.StopMove();
+                }
             }
             else
             {
-                _pawnAttack.CheckAttackArea();
-                _pawnMovement.InitializeMovement();
+                if (!_pawnAttack.CheckAttackArea())
+                {
+                    _pawnMovement.InitializeMovement();
+                }
+                else
+                {
+                    _pawnMovement.StopMove();
+                }
             }
         }
     }
@@ -118,6 +128,10 @@ public class PawnController : MonoBehaviour
         if (!_pawnAttack.CheckAttackArea()) {
 
             _pawnMovement.InitializeMovement();
+        }
+        else
+        {
+            _pawnMovement.StopMove();
         }
     }
 
@@ -172,7 +186,11 @@ public class PawnController : MonoBehaviour
     public void GetHit(int value)
     {
         _currentHealth -= value;
-        if( _currentHealth <= 0 )
+
+        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/Hit");
+        AudioSource.PlayClipAtPoint(audioClip, transform.position);
+
+        if ( _currentHealth <= 0 )
         {
             if (_isPlayer1)
             {

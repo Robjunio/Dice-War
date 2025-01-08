@@ -56,6 +56,8 @@ public class PawnMovement : MonoBehaviour
                 canMove = false;
 
                 transform.DOMove(boardPosition, 0.3f).OnComplete(() => {
+                    AudioClip audioClip = Resources.Load<AudioClip>("Sounds/Move");
+                    AudioSource.PlayClipAtPoint(audioClip, transform.position);
                     EventsManager.Instance.OnPlayerMove();
                 });
                 return;

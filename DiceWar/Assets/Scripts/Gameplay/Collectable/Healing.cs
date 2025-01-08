@@ -16,7 +16,10 @@ public class Healing : Collectable
     {
         base.Collect(player);
         player.Heal(_heal);
-        
+
+        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/PowerUp_Healing");
+        AudioSource.PlayClipAtPoint(audioClip, transform.position);
+
         gameObject.SetActive(false);
     }
 }

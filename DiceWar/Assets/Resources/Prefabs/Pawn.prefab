@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9023baa09f0bd8243ba254e06f2e6d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  attack: 1
+  health: 10
+  attack: 2
   _pawnMovement: {fileID: 7877055769543487617}
   _pawnAttack: {fileID: 4624230579332432312}
 --- !u!114 &7877055769543487617

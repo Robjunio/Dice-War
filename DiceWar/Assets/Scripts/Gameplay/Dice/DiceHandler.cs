@@ -10,6 +10,9 @@ public class DiceHandler : MonoBehaviour
     }
     public void Throw()
     {
+        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/Throw_Dice");
+        AudioSource.PlayClipAtPoint(audioClip, transform.position);
+
         // Calculate torque
         float x = Random.Range(0, 200);
         float y = Random.Range(0, 200);

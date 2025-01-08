@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EventsManager : MonoBehaviour
@@ -35,7 +36,7 @@ public class EventsManager : MonoBehaviour
     {
         PowerUpsInPosition?.Invoke(player1Spawn, player2Spawn, matchSettings, boardMatrix);
 
-        OnPlayer1Turn();
+        StartCoroutine(StartGame());
     }
 
     public void OnPlayerWin(string playerName)
@@ -66,5 +67,11 @@ public class EventsManager : MonoBehaviour
     public void OnPlayerStartABattle()
     {
         PlayerStartABattle?.Invoke();
+    }
+
+    private IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(1f);
+        OnPlayer1Turn();
     }
 }
