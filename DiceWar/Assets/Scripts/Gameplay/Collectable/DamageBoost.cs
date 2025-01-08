@@ -15,6 +15,10 @@ public class DamageBoost : Collectable
     public override void Collect(PawnController player)
     {
         base.Collect(player);
+
+        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/PowerUp_DamageBoost");
+        AudioSource.PlayClipAtPoint(audioClip, transform.position);
+
         player.AddAttack(_extraDamage);
         
         gameObject.SetActive(false);

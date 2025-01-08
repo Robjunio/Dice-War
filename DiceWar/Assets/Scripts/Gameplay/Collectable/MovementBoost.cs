@@ -16,6 +16,9 @@ public class MovementBoost : Collectable
         base.Collect(player);
         player.AddMovement(_extraMov);
 
+        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/PowerUp_MovementBoost");
+        AudioSource.PlayClipAtPoint(audioClip, transform.position);
+
         gameObject.SetActive(false);
     }
 }

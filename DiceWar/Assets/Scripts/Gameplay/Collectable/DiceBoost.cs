@@ -16,6 +16,9 @@ public class DiceBoost : Collectable
         base.Collect(player);
         player.AddDices(_extraDices);
 
+        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/PowerUp_DiceBoost");
+        AudioSource.PlayClipAtPoint(audioClip, transform.position);
+
         gameObject.SetActive(false);
 
     }

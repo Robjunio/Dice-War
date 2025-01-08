@@ -40,7 +40,6 @@ public class PowerUpManager : MonoBehaviour
 
     private void PowerUpCollected()
     {
-        print("Collected");
         _powerUpCounter--;
         if(_powerUpTotal * 0.1f >= _powerUpCounter)
         {
