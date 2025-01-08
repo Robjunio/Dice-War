@@ -4,6 +4,8 @@ using UnityEngine;
 public class PawnController : MonoBehaviour
 {
     [SerializeField] private int health;
+    private int _currentHealth;
+
     [SerializeField] private int attack;
 
     private int _attackBonus = 0;
@@ -21,6 +23,7 @@ public class PawnController : MonoBehaviour
 
     private void Awake()
     {
+        health = _currentHealth;
         var objects = FindObjectsOfType<PawnController>();
         if(objects.Length > 1)
         {
@@ -76,6 +79,14 @@ public class PawnController : MonoBehaviour
         _pawnMovement.InitializeMovement();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Collectable"))
+        {
+            other.GetComponent<Collectable>().Collect(this);
+        }
+    }
+
     public void AddMovement(int value)
     {
         _currentMovementsCounter += value;
@@ -83,7 +94,17 @@ public class PawnController : MonoBehaviour
 
     public void AddAttack(int value)
     {
-        _attackBonus = value;
+        _attackBonus += value;
+    }
+
+    public void AddDices(int value)
+    {
+        _extraDices += value;
+    }
+
+    public void Heal(int value)
+    {
+        _currentHealth = Mathf.Clamp(_currentHealth + value, 0, health);
     }
 
     private void OnEnable()

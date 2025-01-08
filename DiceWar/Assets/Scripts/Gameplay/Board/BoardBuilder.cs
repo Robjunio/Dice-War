@@ -49,7 +49,7 @@ public class BoardBuilder : MonoBehaviour
             }
         }
 
-        EventsManager.Instance.OnBoardReady(_positionPlayer1Spawner, _positionPlayer2Spawner, boardSettings);
+        EventsManager.Instance.OnBoardReady(_positionPlayer1Spawner, _positionPlayer2Spawner, boardSettings, _boardMatrix);
 
     }
 }
